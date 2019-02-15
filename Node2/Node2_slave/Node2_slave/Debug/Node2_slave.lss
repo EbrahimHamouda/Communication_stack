@@ -1,0 +1,1356 @@
+
+Node2_slave.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000086e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000c  00800060  0000086e  00000902  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000404  0080006c  0080006c  0000090e  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000090e  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000940  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000220  00000000  00000000  0000097c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001bcb  00000000  00000000  00000b9c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000d8f  00000000  00000000  00002767  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00001153  00000000  00000000  000034f6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000508  00000000  00000000  0000464c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000b6b  00000000  00000000  00004b54  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000a77  00000000  00000000  000056bf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000001b0  00000000  00000000  00006136  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 a2 00 	jmp	0x144	; 0x144 <__vector_12>
+  34:	0c 94 1e 01 	jmp	0x23c	; 0x23c <__vector_13>
+  38:	0c 94 f7 00 	jmp	0x1ee	; 0x1ee <__vector_14>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 49 00 	jmp	0x92	; 0x92 <__vector_19>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee e6       	ldi	r30, 0x6E	; 110
+  68:	f8 e0       	ldi	r31, 0x08	; 8
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	ac 36       	cpi	r26, 0x6C	; 108
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	24 e0       	ldi	r18, 0x04	; 4
+  78:	ac e6       	ldi	r26, 0x6C	; 108
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a0 37       	cpi	r26, 0x70	; 112
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 19 04 	call	0x832	; 0x832 <main>
+  8a:	0c 94 35 04 	jmp	0x86a	; 0x86a <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <__vector_19>:
+unsigned char I2C_GetStatus(void)
+{
+    unsigned char status;
+    status = TWSR & 0xF8; //masking to eliminate first 3 bits 
+    return status;
+}
+  92:	1f 92       	push	r1
+  94:	0f 92       	push	r0
+  96:	0f b6       	in	r0, 0x3f	; 63
+  98:	0f 92       	push	r0
+  9a:	11 24       	eor	r1, r1
+  9c:	2f 93       	push	r18
+  9e:	3f 93       	push	r19
+  a0:	4f 93       	push	r20
+  a2:	5f 93       	push	r21
+  a4:	6f 93       	push	r22
+  a6:	7f 93       	push	r23
+  a8:	8f 93       	push	r24
+  aa:	9f 93       	push	r25
+  ac:	af 93       	push	r26
+  ae:	bf 93       	push	r27
+  b0:	ef 93       	push	r30
+  b2:	ff 93       	push	r31
+  b4:	80 91 6d 04 	lds	r24, 0x046D	; 0x80046d <i2c_status>
+  b8:	81 30       	cpi	r24, 0x01	; 1
+  ba:	31 f4       	brne	.+12     	; 0xc8 <__vector_19+0x36>
+  bc:	e0 91 6e 04 	lds	r30, 0x046E	; 0x80046e <Static_callBackTx>
+  c0:	f0 91 6f 04 	lds	r31, 0x046F	; 0x80046f <Static_callBackTx+0x1>
+  c4:	09 95       	icall
+  c6:	08 c0       	rjmp	.+16     	; 0xd8 <__vector_19+0x46>
+  c8:	e0 91 6b 04 	lds	r30, 0x046B	; 0x80046b <Static_CallBackRX>
+  cc:	f0 91 6c 04 	lds	r31, 0x046C	; 0x80046c <Static_CallBackRX+0x1>
+  d0:	85 ec       	ldi	r24, 0xC5	; 197
+  d2:	86 bf       	out	0x36, r24	; 54
+  d4:	83 b1       	in	r24, 0x03	; 3
+  d6:	09 95       	icall
+  d8:	ff 91       	pop	r31
+  da:	ef 91       	pop	r30
+  dc:	bf 91       	pop	r27
+  de:	af 91       	pop	r26
+  e0:	9f 91       	pop	r25
+  e2:	8f 91       	pop	r24
+  e4:	7f 91       	pop	r23
+  e6:	6f 91       	pop	r22
+  e8:	5f 91       	pop	r21
+  ea:	4f 91       	pop	r20
+  ec:	3f 91       	pop	r19
+  ee:	2f 91       	pop	r18
+  f0:	0f 90       	pop	r0
+  f2:	0f be       	out	0x3f, r0	; 63
+  f4:	0f 90       	pop	r0
+  f6:	1f 90       	pop	r1
+  f8:	18 95       	reti
+
+000000fa <I2C_Init>:
+  fa:	80 93 6d 04 	sts	0x046D, r24	; 0x80046d <i2c_status>
+  fe:	82 e0       	ldi	r24, 0x02	; 2
+ 100:	80 b9       	out	0x00, r24	; 0
+ 102:	11 b8       	out	0x01, r1	; 1
+ 104:	80 ed       	ldi	r24, 0xD0	; 208
+ 106:	82 b9       	out	0x02, r24	; 2
+ 108:	84 e0       	ldi	r24, 0x04	; 4
+ 10a:	86 bf       	out	0x36, r24	; 54
+ 10c:	08 95       	ret
+
+0000010e <I2C_Start>:
+ 10e:	84 ea       	ldi	r24, 0xA4	; 164
+ 110:	86 bf       	out	0x36, r24	; 54
+ 112:	06 b6       	in	r0, 0x36	; 54
+ 114:	07 fe       	sbrs	r0, 7
+ 116:	fd cf       	rjmp	.-6      	; 0x112 <I2C_Start+0x4>
+ 118:	08 95       	ret
+
+0000011a <I2C_TxWithInterrupt>:
+ 11a:	83 b9       	out	0x03, r24	; 3
+ 11c:	85 e8       	ldi	r24, 0x85	; 133
+ 11e:	86 bf       	out	0x36, r24	; 54
+ 120:	08 95       	ret
+
+00000122 <I2C_AssignCallBackRX>:
+ 122:	90 93 6c 04 	sts	0x046C, r25	; 0x80046c <Static_CallBackRX+0x1>
+ 126:	80 93 6b 04 	sts	0x046B, r24	; 0x80046b <Static_CallBackRX>
+ 12a:	86 b7       	in	r24, 0x36	; 54
+ 12c:	85 64       	ori	r24, 0x45	; 69
+ 12e:	86 bf       	out	0x36, r24	; 54
+ 130:	08 95       	ret
+
+00000132 <I2C_AssignCallBackTx>:
+
+void I2C_AssignCallBackTx(Call_backTX_t pass_callBackFuncation)
+{
+	Static_callBackTx=pass_callBackFuncation;	
+ 132:	90 93 6f 04 	sts	0x046F, r25	; 0x80046f <Static_callBackTx+0x1>
+ 136:	80 93 6e 04 	sts	0x046E, r24	; 0x80046e <Static_callBackTx>
+ 13a:	08 95       	ret
+
+0000013c <i2c_disable_interrupt>:
+}
+
+void i2c_disable_interrupt()
+{
+	TWCR &= ~(1<<0); // disable interrupt 
+ 13c:	86 b7       	in	r24, 0x36	; 54
+ 13e:	8e 7f       	andi	r24, 0xFE	; 254
+ 140:	86 bf       	out	0x36, r24	; 54
+ 142:	08 95       	ret
+
+00000144 <__vector_12>:
+}
+
+uint8 spi_Rx()
+{
+	return READ_REG_8BIT((SPI_BASE+SPIDATAREG));
+}
+ 144:	1f 92       	push	r1
+ 146:	0f 92       	push	r0
+ 148:	0f b6       	in	r0, 0x3f	; 63
+ 14a:	0f 92       	push	r0
+ 14c:	11 24       	eor	r1, r1
+ 14e:	2f 93       	push	r18
+ 150:	3f 93       	push	r19
+ 152:	4f 93       	push	r20
+ 154:	5f 93       	push	r21
+ 156:	6f 93       	push	r22
+ 158:	7f 93       	push	r23
+ 15a:	8f 93       	push	r24
+ 15c:	9f 93       	push	r25
+ 15e:	af 93       	push	r26
+ 160:	bf 93       	push	r27
+ 162:	ef 93       	push	r30
+ 164:	ff 93       	push	r31
+ 166:	8f b1       	in	r24, 0x0f	; 15
+ 168:	e0 91 6c 00 	lds	r30, 0x006C	; 0x80006c <__data_end>
+ 16c:	f0 91 6d 00 	lds	r31, 0x006D	; 0x80006d <__data_end+0x1>
+ 170:	09 95       	icall
+ 172:	ff 91       	pop	r31
+ 174:	ef 91       	pop	r30
+ 176:	bf 91       	pop	r27
+ 178:	af 91       	pop	r26
+ 17a:	9f 91       	pop	r25
+ 17c:	8f 91       	pop	r24
+ 17e:	7f 91       	pop	r23
+ 180:	6f 91       	pop	r22
+ 182:	5f 91       	pop	r21
+ 184:	4f 91       	pop	r20
+ 186:	3f 91       	pop	r19
+ 188:	2f 91       	pop	r18
+ 18a:	0f 90       	pop	r0
+ 18c:	0f be       	out	0x3f, r0	; 63
+ 18e:	0f 90       	pop	r0
+ 190:	1f 90       	pop	r1
+ 192:	18 95       	reti
+
+00000194 <spi_init>:
+ 194:	fc 01       	movw	r30, r24
+ 196:	1d b8       	out	0x0d, r1	; 13
+ 198:	2d b1       	in	r18, 0x0d	; 13
+ 19a:	85 81       	ldd	r24, Z+5	; 0x05
+ 19c:	82 2b       	or	r24, r18
+ 19e:	90 81       	ld	r25, Z
+ 1a0:	20 e8       	ldi	r18, 0x80	; 128
+ 1a2:	92 9f       	mul	r25, r18
+ 1a4:	a0 01       	movw	r20, r0
+ 1a6:	11 24       	eor	r1, r1
+ 1a8:	28 2f       	mov	r18, r24
+ 1aa:	24 2b       	or	r18, r20
+ 1ac:	91 81       	ldd	r25, Z+1	; 0x01
+ 1ae:	30 e2       	ldi	r19, 0x20	; 32
+ 1b0:	93 9f       	mul	r25, r19
+ 1b2:	c0 01       	movw	r24, r0
+ 1b4:	11 24       	eor	r1, r1
+ 1b6:	82 2b       	or	r24, r18
+ 1b8:	92 81       	ldd	r25, Z+2	; 0x02
+ 1ba:	40 e1       	ldi	r20, 0x10	; 16
+ 1bc:	94 9f       	mul	r25, r20
+ 1be:	90 01       	movw	r18, r0
+ 1c0:	11 24       	eor	r1, r1
+ 1c2:	28 2b       	or	r18, r24
+ 1c4:	83 81       	ldd	r24, Z+3	; 0x03
+ 1c6:	88 0f       	add	r24, r24
+ 1c8:	88 0f       	add	r24, r24
+ 1ca:	88 0f       	add	r24, r24
+ 1cc:	28 2b       	or	r18, r24
+ 1ce:	84 81       	ldd	r24, Z+4	; 0x04
+ 1d0:	88 0f       	add	r24, r24
+ 1d2:	88 0f       	add	r24, r24
+ 1d4:	28 2b       	or	r18, r24
+ 1d6:	2d b9       	out	0x0d, r18	; 13
+ 1d8:	6e 9a       	sbi	0x0d, 6	; 13
+ 1da:	08 95       	ret
+
+000001dc <spi_InterruptDisable>:
+ 1dc:	6f 98       	cbi	0x0d, 7	; 13
+ 1de:	08 95       	ret
+
+000001e0 <spi_Tx>:
+
+void spi_Tx(uint8 data)
+{
+	WRITE_REG_8BIT((SPI_BASE+SPIDATAREG),data);
+ 1e0:	8f b9       	out	0x0f, r24	; 15
+ 1e2:	08 95       	ret
+
+000001e4 <Spi_AssignCallBack>:
+	//while (SPI_BUSY);
+}
+
+void Spi_AssignCallBack(void(*ptr_CallBackFun)(uint8))
+{
+	static_PtrCallBackFun= ptr_CallBackFun ;
+ 1e4:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <__data_end+0x1>
+ 1e8:	80 93 6c 00 	sts	0x006C, r24	; 0x80006c <__data_end>
+ 1ec:	08 95       	ret
+
+000001ee <__vector_14>:
+
+uint8 Uart_ReadByte()
+{
+	while (!(ACCESS_REG_8BIT((UARTCONTROLA+UART_BASE)) & (1 << RXC)));       // checking is that recieve completed
+	return UDR;
+}
+ 1ee:	1f 92       	push	r1
+ 1f0:	0f 92       	push	r0
+ 1f2:	0f b6       	in	r0, 0x3f	; 63
+ 1f4:	0f 92       	push	r0
+ 1f6:	11 24       	eor	r1, r1
+ 1f8:	2f 93       	push	r18
+ 1fa:	3f 93       	push	r19
+ 1fc:	4f 93       	push	r20
+ 1fe:	5f 93       	push	r21
+ 200:	6f 93       	push	r22
+ 202:	7f 93       	push	r23
+ 204:	8f 93       	push	r24
+ 206:	9f 93       	push	r25
+ 208:	af 93       	push	r26
+ 20a:	bf 93       	push	r27
+ 20c:	ef 93       	push	r30
+ 20e:	ff 93       	push	r31
+ 210:	e0 91 70 00 	lds	r30, 0x0070	; 0x800070 <ptr_CallBackfnUartTx>
+ 214:	f0 91 71 00 	lds	r31, 0x0071	; 0x800071 <ptr_CallBackfnUartTx+0x1>
+ 218:	09 95       	icall
+ 21a:	ff 91       	pop	r31
+ 21c:	ef 91       	pop	r30
+ 21e:	bf 91       	pop	r27
+ 220:	af 91       	pop	r26
+ 222:	9f 91       	pop	r25
+ 224:	8f 91       	pop	r24
+ 226:	7f 91       	pop	r23
+ 228:	6f 91       	pop	r22
+ 22a:	5f 91       	pop	r21
+ 22c:	4f 91       	pop	r20
+ 22e:	3f 91       	pop	r19
+ 230:	2f 91       	pop	r18
+ 232:	0f 90       	pop	r0
+ 234:	0f be       	out	0x3f, r0	; 63
+ 236:	0f 90       	pop	r0
+ 238:	1f 90       	pop	r1
+ 23a:	18 95       	reti
+
+0000023c <__vector_13>:
+ 23c:	1f 92       	push	r1
+ 23e:	0f 92       	push	r0
+ 240:	0f b6       	in	r0, 0x3f	; 63
+ 242:	0f 92       	push	r0
+ 244:	11 24       	eor	r1, r1
+ 246:	2f 93       	push	r18
+ 248:	3f 93       	push	r19
+ 24a:	4f 93       	push	r20
+ 24c:	5f 93       	push	r21
+ 24e:	6f 93       	push	r22
+ 250:	7f 93       	push	r23
+ 252:	8f 93       	push	r24
+ 254:	9f 93       	push	r25
+ 256:	af 93       	push	r26
+ 258:	bf 93       	push	r27
+ 25a:	ef 93       	push	r30
+ 25c:	ff 93       	push	r31
+ 25e:	8c b1       	in	r24, 0x0c	; 12
+ 260:	e0 91 6e 00 	lds	r30, 0x006E	; 0x80006e <ptr_CallBackfnUartRx>
+ 264:	f0 91 6f 00 	lds	r31, 0x006F	; 0x80006f <ptr_CallBackfnUartRx+0x1>
+ 268:	09 95       	icall
+ 26a:	ff 91       	pop	r31
+ 26c:	ef 91       	pop	r30
+ 26e:	bf 91       	pop	r27
+ 270:	af 91       	pop	r26
+ 272:	9f 91       	pop	r25
+ 274:	8f 91       	pop	r24
+ 276:	7f 91       	pop	r23
+ 278:	6f 91       	pop	r22
+ 27a:	5f 91       	pop	r21
+ 27c:	4f 91       	pop	r20
+ 27e:	3f 91       	pop	r19
+ 280:	2f 91       	pop	r18
+ 282:	0f 90       	pop	r0
+ 284:	0f be       	out	0x3f, r0	; 63
+ 286:	0f 90       	pop	r0
+ 288:	1f 90       	pop	r1
+ 28a:	18 95       	reti
+
+0000028c <Uart_init>:
+ 28c:	89 e1       	ldi	r24, 0x19	; 25
+ 28e:	89 b9       	out	0x09, r24	; 9
+ 290:	8a b1       	in	r24, 0x0a	; 10
+ 292:	88 61       	ori	r24, 0x18	; 24
+ 294:	8a b9       	out	0x0a, r24	; 10
+ 296:	80 b5       	in	r24, 0x20	; 32
+ 298:	86 68       	ori	r24, 0x86	; 134
+ 29a:	80 bd       	out	0x20, r24	; 32
+ 29c:	08 95       	ret
+
+0000029e <Uart_SendByte>:
+ 29e:	5d 9b       	sbis	0x0b, 5	; 11
+ 2a0:	fe cf       	rjmp	.-4      	; 0x29e <Uart_SendByte>
+ 2a2:	8c b9       	out	0x0c, r24	; 12
+ 2a4:	08 95       	ret
+
+000002a6 <Uart_TxInterruptEnable>:
+
+void Uart_TxInterruptEnable(void (*ptr)())
+{
+	ptr_CallBackfnUartTx=ptr;           // assign ptr to call back fun
+ 2a6:	90 93 71 00 	sts	0x0071, r25	; 0x800071 <ptr_CallBackfnUartTx+0x1>
+ 2aa:	80 93 70 00 	sts	0x0070, r24	; 0x800070 <ptr_CallBackfnUartTx>
+	ACCESS_REG_8BIT((UARTCONTROLB+UART_BASE)) |= 1<<UDRIE;                  // enable interrupt when buffer is empty
+ 2ae:	55 9a       	sbi	0x0a, 5	; 10
+ 2b0:	08 95       	ret
+
+000002b2 <Uart_RxInterruptEnable>:
+}
+
+void  Uart_RxInterruptEnable(void (*ptr)(uint8))
+{
+	ptr_CallBackfnUartRx = ptr;         // assign ptr to call back fun
+ 2b2:	90 93 6f 00 	sts	0x006F, r25	; 0x80006f <ptr_CallBackfnUartRx+0x1>
+ 2b6:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <ptr_CallBackfnUartRx>
+	ACCESS_REG_8BIT((UARTCONTROLB+UART_BASE)) |= 1<<RXCIE;                  // enable interrupt when data recieved 
+ 2ba:	57 9a       	sbi	0x0a, 7	; 10
+ 2bc:	08 95       	ret
+
+000002be <HardWare_CallBack>:
+	* check if the buffer lock first
+	* set flage the new data received 
+	* buffer the received data  
+	*/
+	
+	RX_FlageDataReciving  = 1;					//set flage to make dispatcher look at the new data
+ 2be:	91 e0       	ldi	r25, 0x01	; 1
+ 2c0:	90 93 76 00 	sts	0x0076, r25	; 0x800076 <RX_FlageDataReciving>
+	Rx_Buffer[RX_Buffer_Index++] = data;		//store in buffer and increament the index
+ 2c4:	20 91 77 00 	lds	r18, 0x0077	; 0x800077 <RX_Buffer_Index>
+ 2c8:	30 91 78 00 	lds	r19, 0x0078	; 0x800078 <RX_Buffer_Index+0x1>
+ 2cc:	a9 01       	movw	r20, r18
+ 2ce:	4f 5f       	subi	r20, 0xFF	; 255
+ 2d0:	5f 4f       	sbci	r21, 0xFF	; 255
+ 2d2:	50 93 78 00 	sts	0x0078, r21	; 0x800078 <RX_Buffer_Index+0x1>
+ 2d6:	40 93 77 00 	sts	0x0077, r20	; 0x800077 <RX_Buffer_Index>
+ 2da:	f9 01       	movw	r30, r18
+ 2dc:	e7 58       	subi	r30, 0x87	; 135
+ 2de:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2e0:	80 83       	st	Z, r24
+ 2e2:	08 95       	ret
+
+000002e4 <RX_CommFree>:
+#define CHANNEL_SLECTE			   static_RX_cnfg.channel
+#define CNFRMATION_LETTER		   static_RX_cnfg.cofm_letter
+
+void RX_CommFree(void)
+{
+	RX_Buffer_Index = 0;   
+ 2e4:	10 92 78 00 	sts	0x0078, r1	; 0x800078 <RX_Buffer_Index+0x1>
+ 2e8:	10 92 77 00 	sts	0x0077, r1	; 0x800077 <RX_Buffer_Index>
+	RX_FlageDataReciving =0; 
+ 2ec:	10 92 76 00 	sts	0x0076, r1	; 0x800076 <RX_FlageDataReciving>
+ 2f0:	08 95       	ret
+
+000002f2 <Comm_RxInit>:
+	RX_FlageDataReciving  = 1;					//set flage to make dispatcher look at the new data
+	Rx_Buffer[RX_Buffer_Index++] = data;		//store in buffer and increament the index
+}
+
+void Comm_RxInit(RX_cfg_t* ptr_cfg_str)
+{
+ 2f2:	0f 93       	push	r16
+ 2f4:	1f 93       	push	r17
+ 2f6:	cf 93       	push	r28
+ 2f8:	df 93       	push	r29
+ 2fa:	00 d0       	rcall	.+0      	; 0x2fc <Comm_RxInit+0xa>
+ 2fc:	00 d0       	rcall	.+0      	; 0x2fe <Comm_RxInit+0xc>
+ 2fe:	00 d0       	rcall	.+0      	; 0x300 <Comm_RxInit+0xe>
+ 300:	cd b7       	in	r28, 0x3d	; 61
+ 302:	de b7       	in	r29, 0x3e	; 62
+ 304:	8c 01       	movw	r16, r24
+* free the comm from pervious usage 
+* save the confg in static variable 
+* switch to the channel selected to set the hardware
+*/
+
+	RX_CommFree(); // make sure the buffer ready to start RX_in
+ 306:	0e 94 72 01 	call	0x2e4	; 0x2e4 <RX_CommFree>
+	static_RX_cnfg.ptr_user_fun = ptr_cfg_str->ptr_user_fun;	// call user funcation
+ 30a:	e2 e7       	ldi	r30, 0x72	; 114
+ 30c:	f0 e0       	ldi	r31, 0x00	; 0
+ 30e:	d8 01       	movw	r26, r16
+ 310:	8d 91       	ld	r24, X+
+ 312:	9c 91       	ld	r25, X
+ 314:	11 97       	sbiw	r26, 0x01	; 1
+ 316:	91 83       	std	Z+1, r25	; 0x01
+ 318:	80 83       	st	Z, r24
+	static_RX_cnfg.channel		= ptr_cfg_str->channel;
+ 31a:	12 96       	adiw	r26, 0x02	; 2
+ 31c:	8c 91       	ld	r24, X
+ 31e:	12 97       	sbiw	r26, 0x02	; 2
+ 320:	82 83       	std	Z+2, r24	; 0x02
+	static_RX_cnfg.cofm_letter  = ptr_cfg_str->cofm_letter;
+ 322:	13 96       	adiw	r26, 0x03	; 3
+ 324:	9c 91       	ld	r25, X
+ 326:	93 83       	std	Z+3, r25	; 0x03
+
+	switch(CHANNEL_SLECTE) //init the hardware
+ 328:	81 30       	cpi	r24, 0x01	; 1
+ 32a:	59 f0       	breq	.+22     	; 0x342 <Comm_RxInit+0x50>
+ 32c:	18 f0       	brcs	.+6      	; 0x334 <Comm_RxInit+0x42>
+ 32e:	82 30       	cpi	r24, 0x02	; 2
+ 330:	d1 f0       	breq	.+52     	; 0x366 <Comm_RxInit+0x74>
+ 332:	20 c0       	rjmp	.+64     	; 0x374 <Comm_RxInit+0x82>
+	{
+#ifdef _UART0_ 
+		case UART0:
+		{
+			Uart_init();
+ 334:	0e 94 46 01 	call	0x28c	; 0x28c <Uart_init>
+			Uart_RxInterruptEnable(HardWare_CallBack); 
+ 338:	8f e5       	ldi	r24, 0x5F	; 95
+ 33a:	91 e0       	ldi	r25, 0x01	; 1
+ 33c:	0e 94 59 01 	call	0x2b2	; 0x2b2 <Uart_RxInterruptEnable>
+			break;
+ 340:	19 c0       	rjmp	.+50     	; 0x374 <Comm_RxInit+0x82>
+		}
+#endif
+#ifdef _SPIO_
+		case SPIO:
+		{
+			Spi_Config my_spi={SPI_INTERRUPT_ENABLE,SPI_LSB_FIRST,SPI_SLAVE_MODE,SPI_RAISING_EDGE,SPI_SAMPLE,SPI_FOSC_DIV128};
+ 342:	86 e0       	ldi	r24, 0x06	; 6
+ 344:	e0 e6       	ldi	r30, 0x60	; 96
+ 346:	f0 e0       	ldi	r31, 0x00	; 0
+ 348:	de 01       	movw	r26, r28
+ 34a:	11 96       	adiw	r26, 0x01	; 1
+ 34c:	01 90       	ld	r0, Z+
+ 34e:	0d 92       	st	X+, r0
+ 350:	8a 95       	dec	r24
+ 352:	e1 f7       	brne	.-8      	; 0x34c <Comm_RxInit+0x5a>
+			spi_init(&my_spi);
+ 354:	ce 01       	movw	r24, r28
+ 356:	01 96       	adiw	r24, 0x01	; 1
+ 358:	0e 94 ca 00 	call	0x194	; 0x194 <spi_init>
+			Spi_AssignCallBack(HardWare_CallBack);
+ 35c:	8f e5       	ldi	r24, 0x5F	; 95
+ 35e:	91 e0       	ldi	r25, 0x01	; 1
+ 360:	0e 94 f2 00 	call	0x1e4	; 0x1e4 <Spi_AssignCallBack>
+ 364:	07 c0       	rjmp	.+14     	; 0x374 <Comm_RxInit+0x82>
+		}
+#endif
+#ifdef _I2C0_
+		case I2C0:
+		{
+			I2C_Init(I2C_RX);
+ 366:	80 e0       	ldi	r24, 0x00	; 0
+ 368:	0e 94 7d 00 	call	0xfa	; 0xfa <I2C_Init>
+			I2C_AssignCallBackRX(HardWare_CallBack);
+ 36c:	8f e5       	ldi	r24, 0x5F	; 95
+ 36e:	91 e0       	ldi	r25, 0x01	; 1
+ 370:	0e 94 91 00 	call	0x122	; 0x122 <I2C_AssignCallBackRX>
+			break;
+		}
+#endif
+	}
+}
+ 374:	26 96       	adiw	r28, 0x06	; 6
+ 376:	0f b6       	in	r0, 0x3f	; 63
+ 378:	f8 94       	cli
+ 37a:	de bf       	out	0x3e, r29	; 62
+ 37c:	0f be       	out	0x3f, r0	; 63
+ 37e:	cd bf       	out	0x3d, r28	; 61
+ 380:	df 91       	pop	r29
+ 382:	cf 91       	pop	r28
+ 384:	1f 91       	pop	r17
+ 386:	0f 91       	pop	r16
+ 388:	08 95       	ret
+
+0000038a <RX_com_dispatch>:
+
+void RX_com_dispatch() 
+{
+	if (RX_FlageDataReciving)			// check the flage 
+ 38a:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <RX_FlageDataReciving>
+ 38e:	88 23       	and	r24, r24
+ 390:	a9 f0       	breq	.+42     	; 0x3bc <RX_com_dispatch+0x32>
+	{
+
+		 RX_FlageDataReciving=0;				// clear the recived data
+ 392:	10 92 76 00 	sts	0x0076, r1	; 0x800076 <RX_FlageDataReciving>
+		 if (Rx_Buffer[RX_Buffer_Index-1] == static_RX_cnfg.cofm_letter)  // check the confirmation letter
+ 396:	60 91 77 00 	lds	r22, 0x0077	; 0x800077 <RX_Buffer_Index>
+ 39a:	70 91 78 00 	lds	r23, 0x0078	; 0x800078 <RX_Buffer_Index+0x1>
+ 39e:	fb 01       	movw	r30, r22
+ 3a0:	e8 58       	subi	r30, 0x88	; 136
+ 3a2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3a4:	90 81       	ld	r25, Z
+ 3a6:	80 91 75 00 	lds	r24, 0x0075	; 0x800075 <static_RX_cnfg+0x3>
+ 3aa:	98 13       	cpse	r25, r24
+ 3ac:	07 c0       	rjmp	.+14     	; 0x3bc <RX_com_dispatch+0x32>
+		 {
+			 Rx_Buffer[RX_Buffer_Index-1] = static_RX_cnfg.cofm_letter;
+			static_RX_cnfg.ptr_user_fun(Rx_Buffer,RX_Buffer_Index);	
+ 3ae:	e0 91 72 00 	lds	r30, 0x0072	; 0x800072 <static_RX_cnfg>
+ 3b2:	f0 91 73 00 	lds	r31, 0x0073	; 0x800073 <static_RX_cnfg+0x1>
+ 3b6:	89 e7       	ldi	r24, 0x79	; 121
+ 3b8:	90 e0       	ldi	r25, 0x00	; 0
+ 3ba:	09 95       	icall
+ 3bc:	08 95       	ret
+
+000003be <HardWare_CallBack>:
+
+
+
+static void HardWare_CallBack()
+{
+	if (Scounter<=NUM_BYTES)  // if hardware interrupts faster than the checking dispatcher 
+ 3be:	80 91 62 04 	lds	r24, 0x0462	; 0x800462 <Scounter>
+ 3c2:	90 91 63 04 	lds	r25, 0x0463	; 0x800463 <Scounter+0x1>
+ 3c6:	20 91 68 04 	lds	r18, 0x0468	; 0x800468 <Staticptr_cngCommTx+0x4>
+ 3ca:	30 91 69 04 	lds	r19, 0x0469	; 0x800469 <Staticptr_cngCommTx+0x5>
+ 3ce:	28 17       	cp	r18, r24
+ 3d0:	39 07       	cpc	r19, r25
+ 3d2:	e8 f1       	brcs	.+122    	; 0x44e <__LOCK_REGION_LENGTH__+0x4e>
+	{
+		switch (S_CHANNEL)
+ 3d4:	20 91 6a 04 	lds	r18, 0x046A	; 0x80046a <Staticptr_cngCommTx+0x6>
+ 3d8:	21 30       	cpi	r18, 0x01	; 1
+ 3da:	79 f0       	breq	.+30     	; 0x3fa <HardWare_CallBack+0x3c>
+ 3dc:	18 f0       	brcs	.+6      	; 0x3e4 <HardWare_CallBack+0x26>
+ 3de:	22 30       	cpi	r18, 0x02	; 2
+ 3e0:	b9 f0       	breq	.+46     	; 0x410 <__LOCK_REGION_LENGTH__+0x10>
+ 3e2:	20 c0       	rjmp	.+64     	; 0x424 <__LOCK_REGION_LENGTH__+0x24>
+		{
+#ifdef _UART0_CHANNEL_
+			case UART0_CHANNEL:
+			{
+				Uart_SendByte(SPTR_DATA2SENT[Scounter]);
+ 3e4:	20 91 66 04 	lds	r18, 0x0466	; 0x800466 <Staticptr_cngCommTx+0x2>
+ 3e8:	30 91 67 04 	lds	r19, 0x0467	; 0x800467 <Staticptr_cngCommTx+0x3>
+ 3ec:	f9 01       	movw	r30, r18
+ 3ee:	e8 0f       	add	r30, r24
+ 3f0:	f9 1f       	adc	r31, r25
+ 3f2:	80 81       	ld	r24, Z
+ 3f4:	0e 94 4f 01 	call	0x29e	; 0x29e <Uart_SendByte>
+				break;
+ 3f8:	15 c0       	rjmp	.+42     	; 0x424 <__LOCK_REGION_LENGTH__+0x24>
+			}
+#endif
+#ifdef _SPI0_CHANNEL_
+			case SPI0_CHANNEL:
+			{
+				spi_Tx(SPTR_DATA2SENT[Scounter]);
+ 3fa:	20 91 66 04 	lds	r18, 0x0466	; 0x800466 <Staticptr_cngCommTx+0x2>
+ 3fe:	30 91 67 04 	lds	r19, 0x0467	; 0x800467 <Staticptr_cngCommTx+0x3>
+ 402:	f9 01       	movw	r30, r18
+ 404:	e8 0f       	add	r30, r24
+ 406:	f9 1f       	adc	r31, r25
+ 408:	80 81       	ld	r24, Z
+ 40a:	0e 94 f0 00 	call	0x1e0	; 0x1e0 <spi_Tx>
+				break;
+ 40e:	0a c0       	rjmp	.+20     	; 0x424 <__LOCK_REGION_LENGTH__+0x24>
+			}
+#endif
+#ifdef _I2C0_CHANNEL_
+			case I2C0_CHANNEL:
+			{
+				I2C_TxWithInterrupt(SPTR_DATA2SENT[Scounter]);
+ 410:	20 91 66 04 	lds	r18, 0x0466	; 0x800466 <Staticptr_cngCommTx+0x2>
+ 414:	30 91 67 04 	lds	r19, 0x0467	; 0x800467 <Staticptr_cngCommTx+0x3>
+ 418:	f9 01       	movw	r30, r18
+ 41a:	e8 0f       	add	r30, r24
+ 41c:	f9 1f       	adc	r31, r25
+ 41e:	80 81       	ld	r24, Z
+ 420:	0e 94 8d 00 	call	0x11a	; 0x11a <I2C_TxWithInterrupt>
+				break;
+			}
+#endif
+		}
+		Scounter++;
+ 424:	20 91 62 04 	lds	r18, 0x0462	; 0x800462 <Scounter>
+ 428:	30 91 63 04 	lds	r19, 0x0463	; 0x800463 <Scounter+0x1>
+ 42c:	c9 01       	movw	r24, r18
+ 42e:	01 96       	adiw	r24, 0x01	; 1
+ 430:	90 93 63 04 	sts	0x0463, r25	; 0x800463 <Scounter+0x1>
+ 434:	80 93 62 04 	sts	0x0462, r24	; 0x800462 <Scounter>
+		
+		if (Scounter>NUM_BYTES)
+ 438:	40 91 68 04 	lds	r20, 0x0468	; 0x800468 <Staticptr_cngCommTx+0x4>
+ 43c:	50 91 69 04 	lds	r21, 0x0469	; 0x800469 <Staticptr_cngCommTx+0x5>
+ 440:	48 17       	cp	r20, r24
+ 442:	59 07       	cpc	r21, r25
+ 444:	20 f4       	brcc	.+8      	; 0x44e <__LOCK_REGION_LENGTH__+0x4e>
+		{
+			Scounter--;	
+ 446:	30 93 63 04 	sts	0x0463, r19	; 0x800463 <Scounter+0x1>
+ 44a:	20 93 62 04 	sts	0x0462, r18	; 0x800462 <Scounter>
+		}
+	}
+	flage_Tx_Sending =1;  // set flage to work dispatcher
+ 44e:	81 e0       	ldi	r24, 0x01	; 1
+ 450:	80 93 61 04 	sts	0x0461, r24	; 0x800461 <flage_Tx_Sending>
+ 454:	08 95       	ret
+
+00000456 <comm_TxRest>:
+}
+
+
+void comm_TxRest()
+{
+	Scounter			= 0;
+ 456:	10 92 63 04 	sts	0x0463, r1	; 0x800463 <Scounter+0x1>
+ 45a:	10 92 62 04 	sts	0x0462, r1	; 0x800462 <Scounter>
+	flage_Tx_Sending    = 0;
+ 45e:	10 92 61 04 	sts	0x0461, r1	; 0x800461 <flage_Tx_Sending>
+ 462:	08 95       	ret
+
+00000464 <comm_TxInit>:
+}
+
+void comm_TxInit(CommTx_DataCfgType* ptr_struct)
+{
+ 464:	0f 93       	push	r16
+ 466:	1f 93       	push	r17
+ 468:	cf 93       	push	r28
+ 46a:	df 93       	push	r29
+ 46c:	00 d0       	rcall	.+0      	; 0x46e <comm_TxInit+0xa>
+ 46e:	00 d0       	rcall	.+0      	; 0x470 <comm_TxInit+0xc>
+ 470:	00 d0       	rcall	.+0      	; 0x472 <comm_TxInit+0xe>
+ 472:	cd b7       	in	r28, 0x3d	; 61
+ 474:	de b7       	in	r29, 0x3e	; 62
+ 476:	8c 01       	movw	r16, r24
+	* check if comm tx ideal first 
+	* reset_comm Tx
+	* take configuration to local static variable  
+	* switch on channels to init the rquired one 
+	*/
+	comm_TxRest();										// rest static variables
+ 478:	0e 94 2b 02 	call	0x456	; 0x456 <comm_TxRest>
+	Staticptr_cngCommTx.Channel_Select = ptr_struct->Channel_Select;
+ 47c:	d8 01       	movw	r26, r16
+ 47e:	16 96       	adiw	r26, 0x06	; 6
+ 480:	8c 91       	ld	r24, X
+ 482:	16 97       	sbiw	r26, 0x06	; 6
+ 484:	e4 e6       	ldi	r30, 0x64	; 100
+ 486:	f4 e0       	ldi	r31, 0x04	; 4
+ 488:	86 83       	std	Z+6, r24	; 0x06
+	Staticptr_cngCommTx.Num_bytes2sent = ptr_struct->Num_bytes2sent;
+ 48a:	14 96       	adiw	r26, 0x04	; 4
+ 48c:	2d 91       	ld	r18, X+
+ 48e:	3c 91       	ld	r19, X
+ 490:	15 97       	sbiw	r26, 0x05	; 5
+ 492:	35 83       	std	Z+5, r19	; 0x05
+ 494:	24 83       	std	Z+4, r18	; 0x04
+	Staticptr_cngCommTx.commtx_compelete = ptr_struct->commtx_compelete;
+ 496:	2d 91       	ld	r18, X+
+ 498:	3c 91       	ld	r19, X
+ 49a:	11 97       	sbiw	r26, 0x01	; 1
+ 49c:	31 83       	std	Z+1, r19	; 0x01
+ 49e:	20 83       	st	Z, r18
+	Staticptr_cngCommTx.ptr_Data2Sent = ptr_struct->ptr_Data2Sent;
+ 4a0:	12 96       	adiw	r26, 0x02	; 2
+ 4a2:	2d 91       	ld	r18, X+
+ 4a4:	3c 91       	ld	r19, X
+ 4a6:	13 97       	sbiw	r26, 0x03	; 3
+ 4a8:	33 83       	std	Z+3, r19	; 0x03
+ 4aa:	22 83       	std	Z+2, r18	; 0x02
+	
+	switch(S_CHANNEL)
+ 4ac:	81 30       	cpi	r24, 0x01	; 1
+ 4ae:	59 f0       	breq	.+22     	; 0x4c6 <comm_TxInit+0x62>
+ 4b0:	18 f0       	brcs	.+6      	; 0x4b8 <comm_TxInit+0x54>
+ 4b2:	82 30       	cpi	r24, 0x02	; 2
+ 4b4:	51 f1       	breq	.+84     	; 0x50a <comm_TxInit+0xa6>
+ 4b6:	35 c0       	rjmp	.+106    	; 0x522 <comm_TxInit+0xbe>
+	{
+#ifdef _UART0_CHANNEL_
+		case UART0_CHANNEL:
+		{
+			Uart_init();													// init the state
+ 4b8:	0e 94 46 01 	call	0x28c	; 0x28c <Uart_init>
+			Uart_TxInterruptEnable(HardWare_CallBack); 
+ 4bc:	8f ed       	ldi	r24, 0xDF	; 223
+ 4be:	91 e0       	ldi	r25, 0x01	; 1
+ 4c0:	0e 94 53 01 	call	0x2a6	; 0x2a6 <Uart_TxInterruptEnable>
+			break;
+ 4c4:	2e c0       	rjmp	.+92     	; 0x522 <comm_TxInit+0xbe>
+		}
+#endif
+#ifdef _SPI0_CHANNEL_
+		case SPI0_CHANNEL:
+		{	
+			Spi_Config my_spi={SPI_INTERRUPT_ENABLE,SPI_LSB_FIRST,SPI_MASTER_MODE,SPI_RAISING_EDGE,SPI_SAMPLE,SPI_FOSC_DIV128};
+ 4c6:	86 e0       	ldi	r24, 0x06	; 6
+ 4c8:	e6 e6       	ldi	r30, 0x66	; 102
+ 4ca:	f0 e0       	ldi	r31, 0x00	; 0
+ 4cc:	de 01       	movw	r26, r28
+ 4ce:	11 96       	adiw	r26, 0x01	; 1
+ 4d0:	01 90       	ld	r0, Z+
+ 4d2:	0d 92       	st	X+, r0
+ 4d4:	8a 95       	dec	r24
+ 4d6:	e1 f7       	brne	.-8      	; 0x4d0 <comm_TxInit+0x6c>
+			spi_init(&my_spi);
+ 4d8:	ce 01       	movw	r24, r28
+ 4da:	01 96       	adiw	r24, 0x01	; 1
+ 4dc:	0e 94 ca 00 	call	0x194	; 0x194 <spi_init>
+			Spi_AssignCallBack(HardWare_CallBack);	
+ 4e0:	8f ed       	ldi	r24, 0xDF	; 223
+ 4e2:	91 e0       	ldi	r25, 0x01	; 1
+ 4e4:	0e 94 f2 00 	call	0x1e4	; 0x1e4 <Spi_AssignCallBack>
+			spi_Tx(SPTR_DATA2SENT[0]); // sent the first element
+ 4e8:	e0 91 66 04 	lds	r30, 0x0466	; 0x800466 <Staticptr_cngCommTx+0x2>
+ 4ec:	f0 91 67 04 	lds	r31, 0x0467	; 0x800467 <Staticptr_cngCommTx+0x3>
+ 4f0:	80 81       	ld	r24, Z
+ 4f2:	0e 94 f0 00 	call	0x1e0	; 0x1e0 <spi_Tx>
+			Scounter++; 
+ 4f6:	80 91 62 04 	lds	r24, 0x0462	; 0x800462 <Scounter>
+ 4fa:	90 91 63 04 	lds	r25, 0x0463	; 0x800463 <Scounter+0x1>
+ 4fe:	01 96       	adiw	r24, 0x01	; 1
+ 500:	90 93 63 04 	sts	0x0463, r25	; 0x800463 <Scounter+0x1>
+ 504:	80 93 62 04 	sts	0x0462, r24	; 0x800462 <Scounter>
+ 508:	0c c0       	rjmp	.+24     	; 0x522 <comm_TxInit+0xbe>
+		}
+#endif
+#ifdef _I2C0_CHANNEL_
+		case I2C0_CHANNEL:
+		{
+			I2C_Init(I2C_TX); // init 
+ 50a:	81 e0       	ldi	r24, 0x01	; 1
+ 50c:	0e 94 7d 00 	call	0xfa	; 0xfa <I2C_Init>
+			I2C_Start(); // set start 
+ 510:	0e 94 87 00 	call	0x10e	; 0x10e <I2C_Start>
+			I2C_TxWithInterrupt(0b11010000+0); // set address to do "should be config"
+ 514:	80 ed       	ldi	r24, 0xD0	; 208
+ 516:	0e 94 8d 00 	call	0x11a	; 0x11a <I2C_TxWithInterrupt>
+			I2C_AssignCallBackTx(HardWare_CallBack); // assign call back
+ 51a:	8f ed       	ldi	r24, 0xDF	; 223
+ 51c:	91 e0       	ldi	r25, 0x01	; 1
+ 51e:	0e 94 99 00 	call	0x132	; 0x132 <I2C_AssignCallBackTx>
+			break;
+		}
+#endif
+	}
+}
+ 522:	26 96       	adiw	r28, 0x06	; 6
+ 524:	0f b6       	in	r0, 0x3f	; 63
+ 526:	f8 94       	cli
+ 528:	de bf       	out	0x3e, r29	; 62
+ 52a:	0f be       	out	0x3f, r0	; 63
+ 52c:	cd bf       	out	0x3d, r28	; 61
+ 52e:	df 91       	pop	r29
+ 530:	cf 91       	pop	r28
+ 532:	1f 91       	pop	r17
+ 534:	0f 91       	pop	r16
+ 536:	08 95       	ret
+
+00000538 <comm_TxDisspatcher>:
+	}
+}
+
+void comm_TxDisspatcher()
+{
+	if (flage_Tx_Sending)
+ 538:	80 91 61 04 	lds	r24, 0x0461	; 0x800461 <flage_Tx_Sending>
+ 53c:	88 23       	and	r24, r24
+ 53e:	51 f1       	breq	.+84     	; 0x594 <comm_TxDisspatcher+0x5c>
+	{
+		flage_Tx_Sending = 0;
+ 540:	10 92 61 04 	sts	0x0461, r1	; 0x800461 <flage_Tx_Sending>
+		if (Scounter==NUM_BYTES)
+ 544:	80 91 68 04 	lds	r24, 0x0468	; 0x800468 <Staticptr_cngCommTx+0x4>
+ 548:	90 91 69 04 	lds	r25, 0x0469	; 0x800469 <Staticptr_cngCommTx+0x5>
+ 54c:	20 91 62 04 	lds	r18, 0x0462	; 0x800462 <Scounter>
+ 550:	30 91 63 04 	lds	r19, 0x0463	; 0x800463 <Scounter+0x1>
+ 554:	82 17       	cp	r24, r18
+ 556:	93 07       	cpc	r25, r19
+ 558:	e9 f4       	brne	.+58     	; 0x594 <comm_TxDisspatcher+0x5c>
+	}
+}
+
+static void Dissarm_HardwareInterrupt()
+{
+	switch (S_CHANNEL)
+ 55a:	20 91 6a 04 	lds	r18, 0x046A	; 0x80046a <Staticptr_cngCommTx+0x6>
+ 55e:	21 30       	cpi	r18, 0x01	; 1
+ 560:	79 f0       	breq	.+30     	; 0x580 <comm_TxDisspatcher+0x48>
+ 562:	18 f0       	brcs	.+6      	; 0x56a <comm_TxDisspatcher+0x32>
+ 564:	22 30       	cpi	r18, 0x02	; 2
+ 566:	79 f0       	breq	.+30     	; 0x586 <comm_TxDisspatcher+0x4e>
+ 568:	10 c0       	rjmp	.+32     	; 0x58a <comm_TxDisspatcher+0x52>
+	{
+#ifdef _UART0_CHANNEL_
+		case UART0_CHANNEL:
+		{
+			Uart_SendByte(SPTR_DATA2SENT[Scounter]);
+ 56a:	20 91 66 04 	lds	r18, 0x0466	; 0x800466 <Staticptr_cngCommTx+0x2>
+ 56e:	30 91 67 04 	lds	r19, 0x0467	; 0x800467 <Staticptr_cngCommTx+0x3>
+ 572:	f9 01       	movw	r30, r18
+ 574:	e8 0f       	add	r30, r24
+ 576:	f9 1f       	adc	r31, r25
+ 578:	80 81       	ld	r24, Z
+ 57a:	0e 94 4f 01 	call	0x29e	; 0x29e <Uart_SendByte>
+ 57e:	05 c0       	rjmp	.+10     	; 0x58a <comm_TxDisspatcher+0x52>
+		}
+#endif
+#ifdef _SPI0_CHANNEL_
+		case SPI0_CHANNEL:
+		{
+			spi_InterruptDisable();	
+ 580:	0e 94 ee 00 	call	0x1dc	; 0x1dc <spi_InterruptDisable>
+ 584:	02 c0       	rjmp	.+4      	; 0x58a <comm_TxDisspatcher+0x52>
+		}
+#endif
+#ifdef _I2C0_CHANNEL_
+		case I2C0_CHANNEL:
+		{
+			i2c_disable_interrupt();
+ 586:	0e 94 9e 00 	call	0x13c	; 0x13c <i2c_disable_interrupt>
+			/*
+			*lock transmition until user funcation finish  
+			*dissarm the interrupt of hardware 
+			*/
+			Dissarm_HardwareInterrupt();
+			CALLTX_FINIHS();
+ 58a:	e0 91 64 04 	lds	r30, 0x0464	; 0x800464 <Staticptr_cngCommTx>
+ 58e:	f0 91 65 04 	lds	r31, 0x0465	; 0x800465 <Staticptr_cngCommTx+0x1>
+ 592:	09 95       	icall
+ 594:	08 95       	ret
+
+00000596 <SetPinDirection>:
+void gpio_spi_cng_master()
+{
+	SetPinDirection(B4,PORT_PIN_OUT);    //SS
+	SetPinDirection(B5,PORT_PIN_OUT);    //MOSi
+	SetPinDirection(B6,PORT_PIN_IN);	 //MISO
+	SetPinDirection(B7,PORT_PIN_OUT);	 //SCK
+ 596:	88 30       	cpi	r24, 0x08	; 8
+ 598:	e8 f4       	brcc	.+58     	; 0x5d4 <SetPinDirection+0x3e>
+ 59a:	61 11       	cpse	r22, r1
+ 59c:	0e c0       	rjmp	.+28     	; 0x5ba <SetPinDirection+0x24>
+ 59e:	4a b3       	in	r20, 0x1a	; 26
+ 5a0:	21 e0       	ldi	r18, 0x01	; 1
+ 5a2:	30 e0       	ldi	r19, 0x00	; 0
+ 5a4:	b9 01       	movw	r22, r18
+ 5a6:	02 c0       	rjmp	.+4      	; 0x5ac <SetPinDirection+0x16>
+ 5a8:	66 0f       	add	r22, r22
+ 5aa:	77 1f       	adc	r23, r23
+ 5ac:	8a 95       	dec	r24
+ 5ae:	e2 f7       	brpl	.-8      	; 0x5a8 <SetPinDirection+0x12>
+ 5b0:	cb 01       	movw	r24, r22
+ 5b2:	80 95       	com	r24
+ 5b4:	84 23       	and	r24, r20
+ 5b6:	8a bb       	out	0x1a, r24	; 26
+ 5b8:	08 95       	ret
+ 5ba:	4a b3       	in	r20, 0x1a	; 26
+ 5bc:	21 e0       	ldi	r18, 0x01	; 1
+ 5be:	30 e0       	ldi	r19, 0x00	; 0
+ 5c0:	b9 01       	movw	r22, r18
+ 5c2:	02 c0       	rjmp	.+4      	; 0x5c8 <SetPinDirection+0x32>
+ 5c4:	66 0f       	add	r22, r22
+ 5c6:	77 1f       	adc	r23, r23
+ 5c8:	8a 95       	dec	r24
+ 5ca:	e2 f7       	brpl	.-8      	; 0x5c4 <SetPinDirection+0x2e>
+ 5cc:	cb 01       	movw	r24, r22
+ 5ce:	84 2b       	or	r24, r20
+ 5d0:	8a bb       	out	0x1a, r24	; 26
+ 5d2:	08 95       	ret
+ 5d4:	98 ef       	ldi	r25, 0xF8	; 248
+ 5d6:	98 0f       	add	r25, r24
+ 5d8:	98 30       	cpi	r25, 0x08	; 8
+ 5da:	e8 f4       	brcc	.+58     	; 0x616 <SetPinDirection+0x80>
+ 5dc:	61 11       	cpse	r22, r1
+ 5de:	0e c0       	rjmp	.+28     	; 0x5fc <SetPinDirection+0x66>
+ 5e0:	47 b3       	in	r20, 0x17	; 23
+ 5e2:	21 e0       	ldi	r18, 0x01	; 1
+ 5e4:	30 e0       	ldi	r19, 0x00	; 0
+ 5e6:	b9 01       	movw	r22, r18
+ 5e8:	02 c0       	rjmp	.+4      	; 0x5ee <SetPinDirection+0x58>
+ 5ea:	66 0f       	add	r22, r22
+ 5ec:	77 1f       	adc	r23, r23
+ 5ee:	9a 95       	dec	r25
+ 5f0:	e2 f7       	brpl	.-8      	; 0x5ea <SetPinDirection+0x54>
+ 5f2:	cb 01       	movw	r24, r22
+ 5f4:	80 95       	com	r24
+ 5f6:	84 23       	and	r24, r20
+ 5f8:	87 bb       	out	0x17, r24	; 23
+ 5fa:	08 95       	ret
+ 5fc:	47 b3       	in	r20, 0x17	; 23
+ 5fe:	21 e0       	ldi	r18, 0x01	; 1
+ 600:	30 e0       	ldi	r19, 0x00	; 0
+ 602:	b9 01       	movw	r22, r18
+ 604:	02 c0       	rjmp	.+4      	; 0x60a <SetPinDirection+0x74>
+ 606:	66 0f       	add	r22, r22
+ 608:	77 1f       	adc	r23, r23
+ 60a:	9a 95       	dec	r25
+ 60c:	e2 f7       	brpl	.-8      	; 0x606 <SetPinDirection+0x70>
+ 60e:	cb 01       	movw	r24, r22
+ 610:	84 2b       	or	r24, r20
+ 612:	87 bb       	out	0x17, r24	; 23
+ 614:	08 95       	ret
+ 616:	90 ef       	ldi	r25, 0xF0	; 240
+ 618:	98 0f       	add	r25, r24
+ 61a:	98 30       	cpi	r25, 0x08	; 8
+ 61c:	e8 f4       	brcc	.+58     	; 0x658 <SetPinDirection+0xc2>
+ 61e:	61 11       	cpse	r22, r1
+ 620:	0e c0       	rjmp	.+28     	; 0x63e <SetPinDirection+0xa8>
+ 622:	44 b3       	in	r20, 0x14	; 20
+ 624:	21 e0       	ldi	r18, 0x01	; 1
+ 626:	30 e0       	ldi	r19, 0x00	; 0
+ 628:	b9 01       	movw	r22, r18
+ 62a:	02 c0       	rjmp	.+4      	; 0x630 <SetPinDirection+0x9a>
+ 62c:	66 0f       	add	r22, r22
+ 62e:	77 1f       	adc	r23, r23
+ 630:	9a 95       	dec	r25
+ 632:	e2 f7       	brpl	.-8      	; 0x62c <SetPinDirection+0x96>
+ 634:	cb 01       	movw	r24, r22
+ 636:	80 95       	com	r24
+ 638:	84 23       	and	r24, r20
+ 63a:	84 bb       	out	0x14, r24	; 20
+ 63c:	08 95       	ret
+ 63e:	44 b3       	in	r20, 0x14	; 20
+ 640:	21 e0       	ldi	r18, 0x01	; 1
+ 642:	30 e0       	ldi	r19, 0x00	; 0
+ 644:	b9 01       	movw	r22, r18
+ 646:	02 c0       	rjmp	.+4      	; 0x64c <SetPinDirection+0xb6>
+ 648:	66 0f       	add	r22, r22
+ 64a:	77 1f       	adc	r23, r23
+ 64c:	9a 95       	dec	r25
+ 64e:	e2 f7       	brpl	.-8      	; 0x648 <SetPinDirection+0xb2>
+ 650:	cb 01       	movw	r24, r22
+ 652:	84 2b       	or	r24, r20
+ 654:	84 bb       	out	0x14, r24	; 20
+ 656:	08 95       	ret
+ 658:	88 51       	subi	r24, 0x18	; 24
+ 65a:	88 30       	cpi	r24, 0x08	; 8
+ 65c:	e0 f4       	brcc	.+56     	; 0x696 <SetPinDirection+0x100>
+ 65e:	61 11       	cpse	r22, r1
+ 660:	0e c0       	rjmp	.+28     	; 0x67e <SetPinDirection+0xe8>
+ 662:	41 b3       	in	r20, 0x11	; 17
+ 664:	21 e0       	ldi	r18, 0x01	; 1
+ 666:	30 e0       	ldi	r19, 0x00	; 0
+ 668:	b9 01       	movw	r22, r18
+ 66a:	02 c0       	rjmp	.+4      	; 0x670 <SetPinDirection+0xda>
+ 66c:	66 0f       	add	r22, r22
+ 66e:	77 1f       	adc	r23, r23
+ 670:	8a 95       	dec	r24
+ 672:	e2 f7       	brpl	.-8      	; 0x66c <SetPinDirection+0xd6>
+ 674:	cb 01       	movw	r24, r22
+ 676:	80 95       	com	r24
+ 678:	84 23       	and	r24, r20
+ 67a:	81 bb       	out	0x11, r24	; 17
+ 67c:	08 95       	ret
+ 67e:	41 b3       	in	r20, 0x11	; 17
+ 680:	21 e0       	ldi	r18, 0x01	; 1
+ 682:	30 e0       	ldi	r19, 0x00	; 0
+ 684:	b9 01       	movw	r22, r18
+ 686:	02 c0       	rjmp	.+4      	; 0x68c <SetPinDirection+0xf6>
+ 688:	66 0f       	add	r22, r22
+ 68a:	77 1f       	adc	r23, r23
+ 68c:	8a 95       	dec	r24
+ 68e:	e2 f7       	brpl	.-8      	; 0x688 <SetPinDirection+0xf2>
+ 690:	cb 01       	movw	r24, r22
+ 692:	84 2b       	or	r24, r20
+ 694:	81 bb       	out	0x11, r24	; 17
+ 696:	08 95       	ret
+
+00000698 <digitalWrite>:
+ 698:	88 30       	cpi	r24, 0x08	; 8
+ 69a:	e8 f4       	brcc	.+58     	; 0x6d6 <digitalWrite+0x3e>
+ 69c:	61 11       	cpse	r22, r1
+ 69e:	0e c0       	rjmp	.+28     	; 0x6bc <digitalWrite+0x24>
+ 6a0:	4b b3       	in	r20, 0x1b	; 27
+ 6a2:	21 e0       	ldi	r18, 0x01	; 1
+ 6a4:	30 e0       	ldi	r19, 0x00	; 0
+ 6a6:	b9 01       	movw	r22, r18
+ 6a8:	02 c0       	rjmp	.+4      	; 0x6ae <digitalWrite+0x16>
+ 6aa:	66 0f       	add	r22, r22
+ 6ac:	77 1f       	adc	r23, r23
+ 6ae:	8a 95       	dec	r24
+ 6b0:	e2 f7       	brpl	.-8      	; 0x6aa <digitalWrite+0x12>
+ 6b2:	cb 01       	movw	r24, r22
+ 6b4:	80 95       	com	r24
+ 6b6:	84 23       	and	r24, r20
+ 6b8:	8b bb       	out	0x1b, r24	; 27
+ 6ba:	08 95       	ret
+ 6bc:	4b b3       	in	r20, 0x1b	; 27
+ 6be:	21 e0       	ldi	r18, 0x01	; 1
+ 6c0:	30 e0       	ldi	r19, 0x00	; 0
+ 6c2:	b9 01       	movw	r22, r18
+ 6c4:	02 c0       	rjmp	.+4      	; 0x6ca <digitalWrite+0x32>
+ 6c6:	66 0f       	add	r22, r22
+ 6c8:	77 1f       	adc	r23, r23
+ 6ca:	8a 95       	dec	r24
+ 6cc:	e2 f7       	brpl	.-8      	; 0x6c6 <digitalWrite+0x2e>
+ 6ce:	cb 01       	movw	r24, r22
+ 6d0:	84 2b       	or	r24, r20
+ 6d2:	8b bb       	out	0x1b, r24	; 27
+ 6d4:	08 95       	ret
+ 6d6:	98 ef       	ldi	r25, 0xF8	; 248
+ 6d8:	98 0f       	add	r25, r24
+ 6da:	98 30       	cpi	r25, 0x08	; 8
+ 6dc:	e8 f4       	brcc	.+58     	; 0x718 <digitalWrite+0x80>
+ 6de:	61 11       	cpse	r22, r1
+ 6e0:	0e c0       	rjmp	.+28     	; 0x6fe <digitalWrite+0x66>
+ 6e2:	48 b3       	in	r20, 0x18	; 24
+ 6e4:	21 e0       	ldi	r18, 0x01	; 1
+ 6e6:	30 e0       	ldi	r19, 0x00	; 0
+ 6e8:	b9 01       	movw	r22, r18
+ 6ea:	02 c0       	rjmp	.+4      	; 0x6f0 <digitalWrite+0x58>
+ 6ec:	66 0f       	add	r22, r22
+ 6ee:	77 1f       	adc	r23, r23
+ 6f0:	9a 95       	dec	r25
+ 6f2:	e2 f7       	brpl	.-8      	; 0x6ec <digitalWrite+0x54>
+ 6f4:	cb 01       	movw	r24, r22
+ 6f6:	80 95       	com	r24
+ 6f8:	84 23       	and	r24, r20
+ 6fa:	88 bb       	out	0x18, r24	; 24
+ 6fc:	08 95       	ret
+ 6fe:	48 b3       	in	r20, 0x18	; 24
+ 700:	21 e0       	ldi	r18, 0x01	; 1
+ 702:	30 e0       	ldi	r19, 0x00	; 0
+ 704:	b9 01       	movw	r22, r18
+ 706:	02 c0       	rjmp	.+4      	; 0x70c <digitalWrite+0x74>
+ 708:	66 0f       	add	r22, r22
+ 70a:	77 1f       	adc	r23, r23
+ 70c:	9a 95       	dec	r25
+ 70e:	e2 f7       	brpl	.-8      	; 0x708 <digitalWrite+0x70>
+ 710:	cb 01       	movw	r24, r22
+ 712:	84 2b       	or	r24, r20
+ 714:	88 bb       	out	0x18, r24	; 24
+ 716:	08 95       	ret
+ 718:	90 ef       	ldi	r25, 0xF0	; 240
+ 71a:	98 0f       	add	r25, r24
+ 71c:	98 30       	cpi	r25, 0x08	; 8
+ 71e:	e8 f4       	brcc	.+58     	; 0x75a <digitalWrite+0xc2>
+ 720:	61 11       	cpse	r22, r1
+ 722:	0e c0       	rjmp	.+28     	; 0x740 <digitalWrite+0xa8>
+ 724:	45 b3       	in	r20, 0x15	; 21
+ 726:	21 e0       	ldi	r18, 0x01	; 1
+ 728:	30 e0       	ldi	r19, 0x00	; 0
+ 72a:	b9 01       	movw	r22, r18
+ 72c:	02 c0       	rjmp	.+4      	; 0x732 <digitalWrite+0x9a>
+ 72e:	66 0f       	add	r22, r22
+ 730:	77 1f       	adc	r23, r23
+ 732:	9a 95       	dec	r25
+ 734:	e2 f7       	brpl	.-8      	; 0x72e <digitalWrite+0x96>
+ 736:	cb 01       	movw	r24, r22
+ 738:	80 95       	com	r24
+ 73a:	84 23       	and	r24, r20
+ 73c:	85 bb       	out	0x15, r24	; 21
+ 73e:	08 95       	ret
+ 740:	45 b3       	in	r20, 0x15	; 21
+ 742:	21 e0       	ldi	r18, 0x01	; 1
+ 744:	30 e0       	ldi	r19, 0x00	; 0
+ 746:	b9 01       	movw	r22, r18
+ 748:	02 c0       	rjmp	.+4      	; 0x74e <digitalWrite+0xb6>
+ 74a:	66 0f       	add	r22, r22
+ 74c:	77 1f       	adc	r23, r23
+ 74e:	9a 95       	dec	r25
+ 750:	e2 f7       	brpl	.-8      	; 0x74a <digitalWrite+0xb2>
+ 752:	cb 01       	movw	r24, r22
+ 754:	84 2b       	or	r24, r20
+ 756:	85 bb       	out	0x15, r24	; 21
+ 758:	08 95       	ret
+ 75a:	88 51       	subi	r24, 0x18	; 24
+ 75c:	88 30       	cpi	r24, 0x08	; 8
+ 75e:	e0 f4       	brcc	.+56     	; 0x798 <digitalWrite+0x100>
+ 760:	61 11       	cpse	r22, r1
+ 762:	0e c0       	rjmp	.+28     	; 0x780 <digitalWrite+0xe8>
+ 764:	42 b3       	in	r20, 0x12	; 18
+ 766:	21 e0       	ldi	r18, 0x01	; 1
+ 768:	30 e0       	ldi	r19, 0x00	; 0
+ 76a:	b9 01       	movw	r22, r18
+ 76c:	02 c0       	rjmp	.+4      	; 0x772 <digitalWrite+0xda>
+ 76e:	66 0f       	add	r22, r22
+ 770:	77 1f       	adc	r23, r23
+ 772:	8a 95       	dec	r24
+ 774:	e2 f7       	brpl	.-8      	; 0x76e <digitalWrite+0xd6>
+ 776:	cb 01       	movw	r24, r22
+ 778:	80 95       	com	r24
+ 77a:	84 23       	and	r24, r20
+ 77c:	82 bb       	out	0x12, r24	; 18
+ 77e:	08 95       	ret
+ 780:	42 b3       	in	r20, 0x12	; 18
+ 782:	21 e0       	ldi	r18, 0x01	; 1
+ 784:	30 e0       	ldi	r19, 0x00	; 0
+ 786:	b9 01       	movw	r22, r18
+ 788:	02 c0       	rjmp	.+4      	; 0x78e <digitalWrite+0xf6>
+ 78a:	66 0f       	add	r22, r22
+ 78c:	77 1f       	adc	r23, r23
+ 78e:	8a 95       	dec	r24
+ 790:	e2 f7       	brpl	.-8      	; 0x78a <digitalWrite+0xf2>
+ 792:	cb 01       	movw	r24, r22
+ 794:	84 2b       	or	r24, r20
+ 796:	82 bb       	out	0x12, r24	; 18
+ 798:	08 95       	ret
+
+0000079a <gpio_spi_cng_slave>:
+}
+
+void gpio_spi_cng_slave()
+{
+	SetPinDirection(B4,PORT_PIN_IN);	 //SS
+ 79a:	60 e0       	ldi	r22, 0x00	; 0
+ 79c:	8c e0       	ldi	r24, 0x0C	; 12
+ 79e:	0e 94 cb 02 	call	0x596	; 0x596 <SetPinDirection>
+	SetPinDirection(B5,PORT_PIN_IN);	 //MOSI
+ 7a2:	60 e0       	ldi	r22, 0x00	; 0
+ 7a4:	8d e0       	ldi	r24, 0x0D	; 13
+ 7a6:	0e 94 cb 02 	call	0x596	; 0x596 <SetPinDirection>
+	SetPinDirection(B6,PORT_PIN_OUT);    //MISO
+ 7aa:	61 e0       	ldi	r22, 0x01	; 1
+ 7ac:	8e e0       	ldi	r24, 0x0E	; 14
+ 7ae:	0e 94 cb 02 	call	0x596	; 0x596 <SetPinDirection>
+	SetPinDirection(B7,PORT_PIN_IN);     //SCK
+ 7b2:	60 e0       	ldi	r22, 0x00	; 0
+ 7b4:	8f e0       	ldi	r24, 0x0F	; 15
+ 7b6:	0e 94 cb 02 	call	0x596	; 0x596 <SetPinDirection>
+ 7ba:	08 95       	ret
+
+000007bc <gpio_uart_cng>:
+}
+void gpio_uart_cng()
+{
+	SetPinDirection(D0,PORT_PIN_IN); // uart RX
+ 7bc:	60 e0       	ldi	r22, 0x00	; 0
+ 7be:	88 e1       	ldi	r24, 0x18	; 24
+ 7c0:	0e 94 cb 02 	call	0x596	; 0x596 <SetPinDirection>
+	SetPinDirection(D1,PORT_PIN_OUT); // uart TX
+ 7c4:	61 e0       	ldi	r22, 0x01	; 1
+ 7c6:	89 e1       	ldi	r24, 0x19	; 25
+ 7c8:	0e 94 cb 02 	call	0x596	; 0x596 <SetPinDirection>
+ 7cc:	08 95       	ret
+
+000007ce <transmission_complete>:
+* Recieve from spi 
+* transmit through I2c
+*/
+	
+void transmission_complete()
+{
+ 7ce:	08 95       	ret
+
+000007d0 <Receive_Complete>:
+	
+}
+
+void Receive_Complete(uint8* RX_data,uint16 num)
+{
+ 7d0:	ef 92       	push	r14
+ 7d2:	ff 92       	push	r15
+ 7d4:	0f 93       	push	r16
+ 7d6:	1f 93       	push	r17
+ 7d8:	cf 93       	push	r28
+ 7da:	df 93       	push	r29
+ 7dc:	cd b7       	in	r28, 0x3d	; 61
+ 7de:	de b7       	in	r29, 0x3e	; 62
+ 7e0:	27 97       	sbiw	r28, 0x07	; 7
+ 7e2:	0f b6       	in	r0, 0x3f	; 63
+ 7e4:	f8 94       	cli
+ 7e6:	de bf       	out	0x3e, r29	; 62
+ 7e8:	0f be       	out	0x3f, r0	; 63
+ 7ea:	cd bf       	out	0x3d, r28	; 61
+ 7ec:	7c 01       	movw	r14, r24
+ 7ee:	8b 01       	movw	r16, r22
+	digitalWrite(A0,PORT_PIN_LEVEL_HIGH);
+ 7f0:	61 e0       	ldi	r22, 0x01	; 1
+ 7f2:	80 e0       	ldi	r24, 0x00	; 0
+ 7f4:	0e 94 4c 03 	call	0x698	; 0x698 <digitalWrite>
+	CommTx_DataCfgType Data_toTransmit={transmission_complete,RX_data,num,I2C0};
+ 7f8:	87 ee       	ldi	r24, 0xE7	; 231
+ 7fa:	93 e0       	ldi	r25, 0x03	; 3
+ 7fc:	9a 83       	std	Y+2, r25	; 0x02
+ 7fe:	89 83       	std	Y+1, r24	; 0x01
+ 800:	fc 82       	std	Y+4, r15	; 0x04
+ 802:	eb 82       	std	Y+3, r14	; 0x03
+ 804:	1e 83       	std	Y+6, r17	; 0x06
+ 806:	0d 83       	std	Y+5, r16	; 0x05
+ 808:	82 e0       	ldi	r24, 0x02	; 2
+ 80a:	8f 83       	std	Y+7, r24	; 0x07
+	comm_TxInit(&Data_toTransmit);
+ 80c:	ce 01       	movw	r24, r28
+ 80e:	01 96       	adiw	r24, 0x01	; 1
+ 810:	0e 94 32 02 	call	0x464	; 0x464 <comm_TxInit>
+	RX_CommFree();
+ 814:	0e 94 72 01 	call	0x2e4	; 0x2e4 <RX_CommFree>
+}
+ 818:	27 96       	adiw	r28, 0x07	; 7
+ 81a:	0f b6       	in	r0, 0x3f	; 63
+ 81c:	f8 94       	cli
+ 81e:	de bf       	out	0x3e, r29	; 62
+ 820:	0f be       	out	0x3f, r0	; 63
+ 822:	cd bf       	out	0x3d, r28	; 61
+ 824:	df 91       	pop	r29
+ 826:	cf 91       	pop	r28
+ 828:	1f 91       	pop	r17
+ 82a:	0f 91       	pop	r16
+ 82c:	ff 90       	pop	r15
+ 82e:	ef 90       	pop	r14
+ 830:	08 95       	ret
+
+00000832 <main>:
+
+int main(void)
+{
+ 832:	cf 93       	push	r28
+ 834:	df 93       	push	r29
+ 836:	00 d0       	rcall	.+0      	; 0x838 <main+0x6>
+ 838:	00 d0       	rcall	.+0      	; 0x83a <main+0x8>
+ 83a:	cd b7       	in	r28, 0x3d	; 61
+ 83c:	de b7       	in	r29, 0x3e	; 62
+	sei(); // enable global interrupt
+ 83e:	78 94       	sei
+	
+	gpio_uart_cng();
+ 840:	0e 94 de 03 	call	0x7bc	; 0x7bc <gpio_uart_cng>
+	gpio_spi_cng_slave();
+ 844:	0e 94 cd 03 	call	0x79a	; 0x79a <gpio_spi_cng_slave>
+	
+	RX_cfg_t message1 ={Receive_Complete,SPI0_CHANNEL,'*'}; // call back fun when recieve complet , channel, confirmation litter
+ 848:	88 ee       	ldi	r24, 0xE8	; 232
+ 84a:	93 e0       	ldi	r25, 0x03	; 3
+ 84c:	9a 83       	std	Y+2, r25	; 0x02
+ 84e:	89 83       	std	Y+1, r24	; 0x01
+ 850:	81 e0       	ldi	r24, 0x01	; 1
+ 852:	8b 83       	std	Y+3, r24	; 0x03
+ 854:	8a e2       	ldi	r24, 0x2A	; 42
+ 856:	8c 83       	std	Y+4, r24	; 0x04
+	Comm_RxInit(&message1);
+ 858:	ce 01       	movw	r24, r28
+ 85a:	01 96       	adiw	r24, 0x01	; 1
+ 85c:	0e 94 79 01 	call	0x2f2	; 0x2f2 <Comm_RxInit>
+	
+	while (1)
+	{
+		RX_com_dispatch();
+ 860:	0e 94 c5 01 	call	0x38a	; 0x38a <RX_com_dispatch>
+		comm_TxDisspatcher();
+ 864:	0e 94 9c 02 	call	0x538	; 0x538 <comm_TxDisspatcher>
+ 868:	fb cf       	rjmp	.-10     	; 0x860 <__stack+0x1>
+
+0000086a <_exit>:
+ 86a:	f8 94       	cli
+
+0000086c <__stop_program>:
+ 86c:	ff cf       	rjmp	.-2      	; 0x86c <__stop_program>
